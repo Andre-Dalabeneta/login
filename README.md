@@ -1,8 +1,8 @@
 # login
 Sistema de login em PHP e Javascript
 
-#aula02 - 24/09/2019
-Iniciando aula
+# aula02 - 24/09/2019
+Iniciando aula 
 
 # aula01 - 23/09/2019
 (= Começou a primavera =)
