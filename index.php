@@ -7,20 +7,20 @@
 
 <head>
     <!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<title>Sistema de login</title>
+    <title>Sistema de login</title>
 </head>
 
 <body class="bg-dark">
     <!-- Fundo Escuro -->
     <main class="container mt-4">
         <section class="row">
-            <div class="col-lg-4 offset-lg-4" id="alerta">                           
+            <div class="col-lg-4 offset-lg-4" id="alerta">
                 <div class="alert alert-success text-center">
                     <strong>
                         Alo Ha Turma!
@@ -30,16 +30,57 @@
         </section>
         <!-- Formulário e login -->
         <section class="row">
-            <div class="col-lg-4 offset-lg-4 bg-light rounded" 
-            id="caixaLogin">
+            <div class="col-lg-4 offset-lg-4 bg-light rounded" id="caixaLogin">
                 <h2 class="text-center mt-2">
                     Entrar no Sistema
                 </h2>
-                <form action="#" method="post" class="p-2"
-                id="formLogin">
+
+                <form action="#" method="post" class="p-2" id="formLogin">
+
                     <div class="form-group">
-                        <input type="text" name="" id="">
+
+                        <input type="text" name="nomeUsuario" id="nomeUsuario" placeholder="Nome de Usuário" class="form-control">
+
                     </div>
+
+                    <div class="form-group">
+
+                        <input type="password" name="senhaUsuario" 
+                        id="senhaUsuario" placeholder="Senha" class="form-control">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="custom-control custom-checkbox">
+
+                            <input type="checkbox" name="lembrar" id="lembrar" 
+                            class="custom-control-input">
+
+                            <label for="lembrar" class="custom-control-label">
+                                Lembrar de mim.
+                            </label>
+
+                            <a href="#" class="float-right" id="btnEsqueci">
+                                Esqueci a senha!
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="::Entrar::"
+                        name="btnEntrar" id="btnEntrar"
+                        class="btn btn-primary btn-block">
+                    </div>
+
+                    <div class="form-group">
+                        <p class="text-center">
+                            Novo usuário? <a href="#" id="btnRegistrar">
+                            Registre-se aqui!
+                        </a></p>
+                    </div>
+
                 </form>
             </div>
         </section>
