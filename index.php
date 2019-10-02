@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Sistema de login</title>
+
+    <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+
     <style>
         #alerta,
         #caixaSenha,
@@ -56,7 +59,7 @@
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mt-5">
 
                         <div class="custom-control custom-checkbox">
 
@@ -130,7 +133,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" name="nomeUsuario" id="nomeUsuario" class="form-control" placeholder="Nome de usuário" required minlength="5">
+                        <input type="text" name="nomeDoUsuario" id="nomeDoUsuario" class="form-control" placeholder="Nome de usuário" required minlength="5">
                     </div>
 
                     <div class="form-group">
@@ -145,7 +148,7 @@
                         <input type="password" name="senhaUsuarioConfirmar" id="senhaUsuarioConfirmar" class="form-control" placeholder="Confirmar senha" required minlength="6">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mt-5">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" name="concordar" id="concordar" class="custom-control-input">
                             <label for="concordar" class="custom-control-label"></label>
@@ -179,11 +182,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js" 7></script>
 
     <script>
         //Código jQuery para mostrar e ocultar os formulários
         $(function() {
+
+            //Valiação de Formulários
+            jQuery.validator.setDefaults({
+                success: "valid"
+            });
+            $("#formRegistro").validate({
+                rules: {
+                    senhaDoUsuario: "required",
+                    senhaUsuarioConfirmar: {
+                        equalTo: "#senhaDoUsuario"
+                    }
+                }
+            });
+
+            $("#formLogin").validate();
+            $("formSenha").validate();
+
+            //Mostrar e Ocultar Formulários
+
+
             $("#btnEsqueci").click(function() {
                 $("#caixaLogin").hide(); //Ocultar
                 $("#caixaSenha").show(); //Mostrar
@@ -196,6 +219,30 @@
                 $("#caixaRegistro").hide(); //Mostrar
                 $("#caixaLogin").show(); //Ocultar
             });
+        });
+
+        /*
+         * Translated default messages for the jQuery validation plugin.
+         * Locale: PT_BR
+         */
+        jQuery.extend(jQuery.validator.messages, {
+            required: "Este campo &eacute; requerido.",
+            remote: "Por favor, corrija este campo.",
+            email: "Por favor, forne&ccedil;a um endere&ccedil;o eletr&ocirc;nico v&aacute;lido.",
+            url: "Por favor, forne&ccedil;a uma URL v&aacute;lida.",
+            date: "Por favor, forne&ccedil;a uma data v&aacute;lida.",
+            dateISO: "Por favor, forne&ccedil;a uma data v&aacute;lida (ISO).",
+            number: "Por favor, forne&ccedil;a um n&uacute;mero v&aacute;lido.",
+            digits: "Por favor, forne&ccedil;a somente d&iacute;gitos.",
+            creditcard: "Por favor, forne&ccedil;a um cart&atilde;o de cr&eacute;dito v&aacute;lido.",
+            equalTo: "Por favor, forne&ccedil;a o mesmo valor novamente.",
+            accept: "Por favor, forne&ccedil;a um valor com uma extens&atilde;o v&aacute;lida.",
+            maxlength: jQuery.validator.format("Por favor, forne&ccedil;a n&atilde;o mais que {0} caracteres."),
+            minlength: jQuery.validator.format("Por favor, forne&ccedil;a ao menos {0} caracteres."),
+            rangelength: jQuery.validator.format("Por favor, forne&ccedil;a um valor entre {0} e {1} caracteres de comprimento."),
+            range: jQuery.validator.format("Por favor, forne&ccedil;a um valor entre {0} e {1}."),
+            max: jQuery.validator.format("Por favor, forne&ccedil;a um valor menor ou igual a {0}."),
+            min: jQuery.validator.format("Por favor, forne&ccedil;a um valor maior ou igual a {0}.")
         });
     </script>
 
