@@ -25,7 +25,7 @@ if(isset($_POST['action'])){
         echo "\n</pre>";
         
     }else{
-        echo "<h1>Alo ha!</h1> <h2> Acesso negado</h2>";
+        header("location:index.php");
     }
 }else{
     header("location:index.php");

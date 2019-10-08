@@ -218,26 +218,52 @@
             $("#caixaLogin").show();
         });
         //Cadastro de novo usuário
-        $("#btnRegistrar").click(function(e){
-            if(document.querySelector("#formRegistro").checkValidity()){
+        $("#btnRegistrar").click(function(e) {
+            if (document.querySelector("#formRegistro").checkValidity()) {
                 e.preventDefault();
                 $.ajax({
-                    url:'receber_dados.php',
-                    method:'post',
-                    data:$("#formRegistro").serialize()+'&action=cadastro',
-                    success:function(resposta){
+                    url: 'receber_dados.php',
+                    method: 'post',
+                    data: $("#formRegistro").serialize() + '&action=cadastro',
+                    success: function(resposta) {
                         $("#alerta").show();
                         $(".resultado").html(resposta);
-                    } 
+                    }
                 });
             }
             return true;
         });
         //Login
-        $("#btnEntrar").click(function(e){});
-        //
-        $("#btnGerar").click(function(e){});
-
+        $("#btnEntrar").click(function(e) {});
+        if (document.querySelector("#formLogin").checkValidity()) {
+            e.preventDefault();
+            $.ajax({
+                url: 'receber_dados.php',
+                method: 'post',
+                data: $("#formLogin").serialize() + '&action=login',
+                success: function(resposta) {
+                    $("#alerta").show();
+                    $(".resultado").html(resposta);
+                }
+            });
+        }
+        return true;
+        });
+        $("#btnGerar").click(function(e) {});
+        if (document.querySelector("#formSenha").checkValidity()) {
+            e.preventDefault();
+            $.ajax({
+                url: 'receber_dados.php',
+                method: 'post',
+                data: $("#formSenha").serialize() + '&action=senha',
+                success: function(resposta) {
+                    $("#alerta").show();
+                    $(".resultado").html(resposta);
+                }
+            });
+        }
+        return true;
+        });
         /*
             Translated
         default messages
