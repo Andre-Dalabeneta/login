@@ -40,6 +40,7 @@ CREATE TABLE `usuario` (
   `senhaDoUsuario` char(40) NOT NULL,
   `dataCriado` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+COMMIT;
 
 --
 -- Índices para tabelas despejadas
