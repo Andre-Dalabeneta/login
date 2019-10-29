@@ -20,7 +20,8 @@
     <style>
         #alerta,
         #caixaSenha,
-        #caixaRegistro {
+        #caixaRegistro,
+        #caixaNovo {
             display: none;
         }
     </style>
@@ -46,16 +47,16 @@
                 </h2>
                 <form action="#" method="post" class="p-2" id="formLogin">
                     <div class="form-group">
-                        <input type="text" name="nomeUsuario" id="nomeUsuario" placeholder="Nome de Usuário" class="form-control" required minlength="5" value="<?= isset($_COOKIE['nomeDoUsuario'])?$_COOKIE['nomeDoUsuario']:"";?>">
+                        <input type="text" name="nomeUsuario" id="nomeUsuario" placeholder="Nome de Usuário" class="form-control" required minlength="5" value="<?= isset($_COOKIE['nomeDoUsuario']) ? $_COOKIE['nomeDoUsuario'] : ""; ?>">
                     </div>
 
                     <div class="form-group">
-                        <input type="password" name="senhaUsuario" id="senhaUsuario" placeholder="Senha" class="form-control" required minlength="6" value="<?= isset($_COOKIE['senhaDoUsuario'])?$_COOKIE['senhaDoUsuario']:"";?>">
+                        <input type="password" name="senhaUsuario" id="senhaUsuario" placeholder="Senha" class="form-control" required minlength="6" value="<?= isset($_COOKIE['senhaDoUsuario']) ? $_COOKIE['senhaDoUsuario'] : ""; ?>">
                     </div>
 
                     <div class="form-group mt-5">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="lembrar" id="lembrar" class="custom-control-input" <?= isset($_COOKIE['senhaDoUsuario'])?" checked":"";?>>
+                            <input type="checkbox" name="lembrar" id="lembrar" class="custom-control-input" <?= isset($_COOKIE['senhaDoUsuario']) ? " checked" : ""; ?>>
                             <label for="lembrar" class="custom-control-label">
                                 Lembrar de mim.
                             </label>
@@ -74,6 +75,14 @@
                         <p>
                             Novo usuário? <a href="#" id="btnRegistrarNovo">
                                 Registre-se aqui!
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <p>
+                            <a href="#" id="btnMostrar">
+                                Mostrar
                             </a>
                         </p>
                     </div>
@@ -165,6 +174,73 @@
             </div>
         </section>
 
+        <section class="row">
+            <div class="col-lg-4 offset-lg-4 bg-light rounded" id="caixaNovo">
+                <h2 class="text-center mt-2">
+                    Novo
+                </h2>
+                <form action="#" method="post" class="p-2" id="formNovo">
+                    <div class="form-group">
+                        <input type="text" name="nomeCompleto" id="nomeCompleto" placeholder="Nome Completo" class="form-control" required minlength="10" value="<?= isset($_COOKIE['nomeDoUsuario']) ? $_COOKIE['nomeDoUsuario'] : ""; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" placeholder="E-mail" class="form-control" required value="<?= isset($_COOKIE['senhaDoUsuario']) ? $_COOKIE['senhaDoUsuario'] : ""; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="date" name="dataAniversario" id="dataAniversario" placeholder="Data de Aniversário" class="form-control" required value="<?= isset($_COOKIE['senhaDoUsuario']) ? $_COOKIE['senhaDoUsuario'] : ""; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="url" name="redeSocial" id="redeSocial" placeholder="Insira a URL para qualquer uma de suas redes sociais" class="form-control" required value="<?= isset($_COOKIE['senhaDoUsuario']) ? $_COOKIE['senhaDoUsuario'] : ""; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="url" name="imagemUsuario" id="imagemUsuario" placeholder="Insira a URL para qualquer imagem sua" class="form-control" required value="<?= isset($_COOKIE['senhaDoUsuario']) ? $_COOKIE['senhaDoUsuario'] : ""; ?>">
+                    </div>
+
+                    <label for="estado">Estado</label>
+                    <select class="form-control" name="estado" id="estado">
+                        <option></option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="PR">Paraná</option>
+                    </select>
+
+                    <label for="cidade">Cidade</label>
+                    <select class="form-control" name="cidade" id="cidade">
+                        <option></option>
+                        <option value="Guabiruba">Guabiruba</option>
+                        <option value="Botuverá">Botuverá</option>
+                        <option value="Gaspar">Gaspar</option>
+                        <option value="Itajaí">Itajaí</option>
+                        <option value="Nova Trento">Nova Trento</option>
+                    </select>
+
+
+                    <div class="form-group mt-5">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="lembrar" id="lembrar" class="custom-control-input" <?= isset($_COOKIE['senhaDoUsuario']) ? " checked" : ""; ?>>
+                            <label for="lembrar" class="custom-control-label">
+                                Lembrar de mim.
+                            </label>
+
+                            <div class="form-group">
+                                <input type="submit" value=": : Enviar : :" name="btnEnviar" id="btnEnviar" class="btn btn-primary btn-block">
+                            </div>
+
+                            <div class="form-group">
+                                <p class="text-center">
+                                    Já registrado? <a href="#" id="btnJaRegistrado3">
+                                        Entrar por aqui.
+                                    </a>
+                                </p>
+                            </div>
+                </form>
+            </div>
+        </section>
+
         <!-- Final do formulário de cadastro de novos usuários -->
 
     </main>
@@ -193,6 +269,8 @@
             });
             $("#formLogin").validate();
             $("#formSenha").validate();
+            $("#formNovo").validate();
+
             $("#btnEsqueci").click(function() {
                 $("#caixaLogin").hide(); //Ocultar
                 $("#caixaSenha").show(); //Mostrar
@@ -202,14 +280,27 @@
                 $("#caixaRegistro").show(); //Mostrar
             })
         });
+
         $("#btnJaRegistrado").click(function() {
             $("#caixaSenha").hide();
             $("#caixaLogin").show();
-        })
+        });
+
+        $("#btnMostrar").click(function() {
+            $("#caixaLogin").hide();
+            $("#caixaNovo").show();
+        });
+
         $("#btnJaRegistrado2").click(function() {
             $("#caixaRegistro").hide();
             $("#caixaLogin").show();
         });
+
+        $("#btnJaRegistrado3").click(function() {
+            $("#caixaNovo").hide();
+            $("#caixaLogin").show();
+        });
+        
         //Cadastro de novo usuário
         $("#btnRegistrar").click(function(e) {
             if (document.querySelector("#formRegistro").checkValidity()) {
