@@ -23,6 +23,7 @@ if (isset($_POST['action'])) {
         $emailUsuario = verificar_entrada($_POST['emailUsuario']);
         $senhaDoUsuario = verificar_entrada($_POST['senhaDoUsuario']);
         $senhaUsuarioConfirmar = verificar_entrada($_POST['senhaUsuarioConfirmar']);
+        $cadastroUrl = verificar_entrada($_POST['cadastroUrl']);
         $dataCriado = date("Y-m-d"); //Data atual no formato de Banco de dados
         //codificando as senhas
         $senhaCodificada = sha1($senhaDoUsuario);
@@ -51,8 +52,8 @@ if (isset($_POST['action'])) {
                 echo "<p class='text-danger'>E-mail indisponível</p>";
             } else {
                 //Usuário pode ser cadastrado no banco de dados
-                $sql = $connect->prepare("INSERT into usuario (nomeDoUsuario, nomeCompleto, emailUsuario, senhaDoUsuario, dataCriado) values(?, ?, ?, ?, ?)");
-                $sql->bind_param("sssss", $nomeDoUsuario, $nomeCompleto, $emailUsuario, $senhaCodificada, $dataCriado);
+                $sql = $connect->prepare("INSERT into usuario (nomeDoUsuario, nomeCompleto, emailUsuario, senhaDoUsuario, dataCriado, cadastroUrl) values(?, ?, ?, ?, ?, ?)");
+                $sql->bind_param("ssssss", $nomeDoUsuario, $nomeCompleto, $emailUsuario, $senhaCodificada, $dataCriado, $cadastroUrl);
                 if ($sql->execute()) {
                     echo "<p class='text-success'>Usuário cadastrado</p>";
                 } else {

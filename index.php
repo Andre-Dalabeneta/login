@@ -149,6 +149,10 @@
                         <input type="password" name="senhaUsuarioConfirmar" id="senhaUsuarioConfirmar" class="form-control" placeholder="Confirme sua senha" required minlength="6">
                     </div>
 
+                    <div class="form-group">
+                        <input type="url" name="cadastroUrl" id="cadastroUrl" class="form-control" placeholder="Insira uma URL para imagem de perfil" required>
+                    </div>
+
                     <div class="form-group mt-4">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" name="concordar" id="concordar" class="custom-control-input">
@@ -200,23 +204,27 @@
                         <input type="url" name="imagemUsuario" id="imagemUsuario" placeholder="Insira a URL para qualquer imagem sua" class="form-control" required value="<?= isset($_COOKIE['senhaDoUsuario']) ? $_COOKIE['senhaDoUsuario'] : ""; ?>">
                     </div>
 
-                    <label for="estado">Estado</label>
-                    <select class="form-control" name="estado" id="estado">
-                        <option></option>
-                        <option value="RS">Rio Grande do Sul</option>
-                        <option value="SC">Santa Catarina</option>
-                        <option value="PR">Paraná</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <select class="form-control" name="estado" id="estado">
+                            <option></option>
+                            <option value="pr">Paraná</option>
+                            <option value="sc">Santa Catarina</option>
+                            <option value="rs">Rio Grande do Sul</option>
+                        </select>
+                    </div>
 
-                    <label for="cidade">Cidade</label>
-                    <select class="form-control" name="cidade" id="cidade">
-                        <option></option>
-                        <option value="Guabiruba">Guabiruba</option>
-                        <option value="Botuverá">Botuverá</option>
-                        <option value="Gaspar">Gaspar</option>
-                        <option value="Itajaí">Itajaí</option>
-                        <option value="Nova Trento">Nova Trento</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="cidade">Cidade</label>
+                        <select class="form-control" name="cidade" id="cidade">
+                            <option></option>
+                            <option value="gaspar">Gaspar</option>
+                            <option value="botuvera">Botuverá</option>
+                            <option value="guabiruba">Guabiruba</option>
+                            <option value="itajai">Itajaí</option>
+                            <option value="novaTrento">Nova Trento</option>
+                        </select>
+                    </div>
 
 
                     <div class="form-group mt-5">
@@ -270,7 +278,6 @@
             $("#formLogin").validate();
             $("#formSenha").validate();
             $("#formNovo").validate();
-
             $("#btnEsqueci").click(function() {
                 $("#caixaLogin").hide(); //Ocultar
                 $("#caixaSenha").show(); //Mostrar
@@ -280,27 +287,22 @@
                 $("#caixaRegistro").show(); //Mostrar
             })
         });
-
         $("#btnJaRegistrado").click(function() {
             $("#caixaSenha").hide();
             $("#caixaLogin").show();
-        });
-
+        })
         $("#btnMostrar").click(function() {
             $("#caixaLogin").hide();
             $("#caixaNovo").show();
-        });
-
+        })
         $("#btnJaRegistrado2").click(function() {
             $("#caixaRegistro").hide();
             $("#caixaLogin").show();
         });
-
         $("#btnJaRegistrado3").click(function() {
             $("#caixaNovo").hide();
             $("#caixaLogin").show();
         });
-        
         //Cadastro de novo usuário
         $("#btnRegistrar").click(function(e) {
             if (document.querySelector("#formRegistro").checkValidity()) {
