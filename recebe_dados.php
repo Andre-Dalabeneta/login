@@ -100,14 +100,18 @@ if (isset($_POST['action'])) {
         $resposta = $sql->get_result();
         if($resposta->num_rows > 0){
             //echo "E-mail encontrado!";
-            $frase = "escreviESaiCorrendoPauNoCuDeQuemTaLendo123";
+            $frase = "çausdhfsçmawe9f8rp9gsijdfvpsodvçsdomvpsd123";
             $palavra_secreta = str_shuffle($frase);
             $token = substr($palavra_secreta,0,10);
             //echo "Token: $token";
-            $sql = $connect->prepare("UPDATE usuario SET token=?, tempoDeVida=?DATE_ADD(now(), INTERVAL 1 MINUTE)WHERE emailUsusario = ?");
+            $sql = $connect->prepare("UPDATE usuario SET token=?, 
+            tempoDeVida=DATE_ADD(now(), INTERVAL 5 MINUTE) 
+            WHERE emailUsuario = ?");
             $sql->bind_param("ss", $token, $email);
             $sql->execute();
-            echo "Token no banco de dados";
+            //echo "Token no banco de dados";
+            $link = "<a href='gerarSenha.php?email=$email&token=$token'>Clique aqui para gerar nova senha</a>";
+            echo $link; //Este link deve ser enviado por email
         }
         else{
             echo "E-mail não encontrado!";
